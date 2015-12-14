@@ -1,20 +1,113 @@
 <html>
     <head>
         <script src="jquery-1.11.3.min.js" ></script>
-        <script src="o.input.file.js" ></script>
+       
         <!-- <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" >  --> 
     </head>
     <body>
 <script>
-function changefile(){
-    FR= new FileReader();
-    FR.readAsDataURL( $("#test_file")[0].files[0] );
-    FR.onload = function(e){ 
-        $('#test_image').attr('src',e.target.result);
-    }
+var myApp = {
+
+	init: function() {
+		for (var i in this) {
+			if (typeof this[i] == 'object') {
+					this[i].init = this.init;
+					this[i].init();
+					this[i].parent = this;
+			}
+		}
+		delete this.init;
+		return this;
+	},
+
+	obj1: {
+		obj2: {
+			notify: function() {
+				console.log(this.parent.parent.obj3.msg);
+			}
+		}
+	},
+	
+	obj3: {
+		msg: 'Hello'
+	}
+
+}.init();
+huy = $.extend(myApp);
+huy.obj1.obj2.notify();
+
+
+if(typeof(o) != undefined) 
+{	
+var	o = {};
+o.base = {
+		init : function() {
+			for (var i in this) {
+				
+				if (this[i] != null && typeof this[i] === 'object') {
+					
+						this[i].init = this.init;
+						this[i].init();
+						this[i].parent = this;
+						
+						//properties and methor default
+				}
+			}
+			delete this.init;
+			return this;
+		},
+	};
 }
+
+db = $.extend({
+	
+	primary_key : 'entity_id',
+	primary_value : null,
+	collectionName:null,//name of table
+	find : {},
+	insert: function(){
+	
+	},
+	
+	update: function(){
+		
+	},
+	data:{},
+	save:function(){
+		
+	},
+	
+	//get data of one row: is fist row if return mutilirow
+	getData:function(){
+	
+	},
+	setData:function(){
+	
+	},
+	setFind:function(){
+	
+	},
+	collection : {
+		//cha:this,
+		//get data mutlirow
+		getData:function(){
+			
+			
+		},
+		setFind:function(find){
+			$this = this.parent;
+			console.log(this.parent);
+			//$this.find = find;
+		},
+		
+		
+	},
+	
+},o.base);
+
+page = $.extend(db.init());
+page.collection.setFind({});
 </script>
-        <input type="file" id="test_file" onchange="changefile()" name="test_file">
-<img id="test_image" src="">
+        
     </body>
 </html>
