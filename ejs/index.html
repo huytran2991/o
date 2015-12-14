@@ -1,0 +1,17 @@
+<html>
+<head>
+<script type="text/javascript" src="ejs_production.js"></script>
+</head>
+<body>
+<div id="result">
+</div>
+<script>
+data = {	title:	'Cleaning Supplies',
+supplies:	['mop', 'broom', 'duster']	};
+
+html = new EJS({url: '/ejs/cleaning.ejs'}).render(data)
+
+document.getElementById('result').innerHtml = html;
+</script>
+</body>
+</html>
